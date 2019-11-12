@@ -1,6 +1,7 @@
-package com.jpcompany.ui;
+package com.jpcompany.ui.service;
 
 
+import com.jpcompany.ui.model.UserPrincipal;
 import com.jpcompany.ui.model.User;
 import com.jpcompany.ui.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
