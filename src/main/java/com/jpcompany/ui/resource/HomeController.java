@@ -1,4 +1,4 @@
-package com.jpcompany.ui;
+package com.jpcompany.ui.resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,13 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 * Giving proper comments in our program makes it more
 * user-friendly and it is assumed as a high-quality code.
 * 
-*
-* @author  Maurizio Bella
-* @version 1.0
-* @since   2019-09-15
-* @author  Maurizio Bella
-* @version 1.1
-* @since   2019-10-14 
 */
 @Controller
 public class HomeController {
