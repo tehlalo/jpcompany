@@ -29,13 +29,7 @@ build/
 
 ### VS Code ###
 .vscode/
-
 **/templates
-
-src/main/resources/application.properties
-
-bin/mvnw
-
-bin/mvnw.cmd
-
-bin/pom.xml
+**/webapp
+**/.mvn
+application.properties
