@@ -1,10 +1,12 @@
 package com.jpcompany.jpc.service;
 
 import com.jpcompany.jpc.model.User;
+import com.jpcompany.jpc.web.dto.UserRegistrationDto;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
-public interface UserService {
+public interface UserService extends UserDetailsService {
 
-    public User findUserByEmail(String email);
+    User findByEmail(String email);
 
-    public void saveUser(User user);
+    User save(UserRegistrationDto registration);
 }
