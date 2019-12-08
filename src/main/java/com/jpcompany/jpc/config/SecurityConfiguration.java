@@ -21,18 +21,24 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
     	
         String[] staticResources  =  {
-        		"/registration**",
                 "/css/**",
                 "/images/**",
                 "/fonts/**",
                 "/js/**",
                 "/webjars/**",
             };
+        
+        String[] templates  =  {
+        		"/registration**",
+
+            };
     	
         http         
                 .authorizeRequests()
-                	.antMatchers(staticResources).permitAll()                    
-                    .anyRequest().authenticated()
+//                	.antMatchers(staticResources).permitAll()     
+//                	.antMatchers(templates).permitAll()                    
+//                    .anyRequest().authenticated()
+                .anyRequest().permitAll()
                 .and()
                     .formLogin()
                         .loginPage("/login")

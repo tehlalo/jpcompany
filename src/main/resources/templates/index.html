@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
 
@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>SB Admin - Dashboard</title>
+  <title>SB Admin - Blank Page</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -19,78 +19,26 @@
 
   <!-- Custom styles for this template-->
   <link href="css/sb-admin.css" rel="stylesheet">
+  
+  
 
 </head>
 
 <body id="page-top">
 
-  <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+    <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-    <a class="navbar-brand mr-1" th:href="@{/}">Start Bootstrap</a>
+    <a class="navbar-brand mr-1" th:href="@{/}">
+	<img src="images/logo.png" alt="Jones Print Company" height="51" width="81"/>
+	</a>
 
     <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
       <i class="fas fa-bars"></i>
     </button>
 
-    <!-- Navbar Search 
-    <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-      <div class="input-group">
-        <input type="text" class="form-control" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-        <div class="input-group-append">
-          <button class="btn btn-primary" type="button">
-            <i class="fas fa-search"></i>
-          </button>
-        </div>
-      </div>
-    </form>
- -->
- 
-    <!-- Navbar -->
-     <!-- 
-   
-    <ul class="navbar-nav ml-auto ml-md-0">
-      <li class="nav-item dropdown no-arrow mx-1">
-        <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="fas fa-bell fa-fw"></i>
-          <span class="badge badge-danger">9+</span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-     
-      <li class="nav-item dropdown no-arrow mx-1">
-        <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="fas fa-envelope fa-fw"></i>
-          <span class="badge badge-danger">7</span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="messagesDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-      <li class="nav-item dropdown no-arrow">
-        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="fas fa-user-circle fa-fw"></i>
-        </a>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-          <a class="dropdown-item" href="#">Settings</a>
-          <a class="dropdown-item" href="#">Activity Log</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
-        </div>
-      </li>
-
-    </ul>
--->
   </nav>
- 
-  <div id="wrapper">
+
+ <div id="wrapper">
 
     <!-- Sidebar -->
     <ul class="sidebar navbar-nav">
@@ -102,7 +50,7 @@
       </li>
      
       <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+        <a class="nav-link" th:href="@{/reports}">
           <i class="fas fa-fw fa-file-alt"></i>
           <span>Reports</span></a>
       </li>
@@ -113,19 +61,18 @@
           <span>Accounts</span></a>
 		  <div class="dropdown-menu" aria-labelledby="pagesDropdown">
           <h6 class="dropdown-header">User Accounts:</h6>
-          <a class="dropdown-item" href="register.html">New User</a>
-		  <a class="dropdown-item" href="register.html">Edit User</a>
-		  <a class="dropdown-item" href="register.html">Delete User</a>
-          <a class="dropdown-item" href="forgot-password.html">Reset Password</a>
+          <a class="dropdown-item" th:href="@{/newUser}">New User</a>
+		  <a class="dropdown-item" th:href="@{/editUser}">Edit User</a>
+		  <a class="dropdown-item" th:href="@{/deleteUser}">Delete User</a>
           <div class="dropdown-divider"></div>
           <h6 class="dropdown-header">My Account:</h6>
-          <a class="dropdown-item" href="404.html">Account Inf.</a>
-          <a class="dropdown-item" href="blank.html">Reset Password</a>
+          <a class="dropdown-item" th:href="@{/myAccount}">Profile</a>
+          <a class="dropdown-item" th:href="@{/passwordReset}">Password Reset</a>
         </div>
       </li>        
         
       <li class="nav-item">
-        <a class="nav-link" th:href="@{/logout}">
+        <a class="nav-link" href="#" data-toggle="modal" data-target="#logoutModal">
           <i class="fas fa-fw fa-sign-out-alt"></i>
           <span>Logout</span></a>
       </li>
@@ -151,7 +98,23 @@
                 <div class="card-body-icon">
                   <i class="fas fa-fw fa-comments"></i>
                 </div>
-                <div class="mr-5">New Messages!</div>
+                <div class="mr-5">Completed Orders</div>
+              </div>
+              <a class="card-footer text-white clearfix small z-1" href="#">
+                <span class="float-left">View Details</span>
+                <span class="float-right">
+                  <i class="fas fa-angle-right"></i>
+                </span>
+              </a>
+            </div>
+          </div>
+		  <div class="col-xl-3 col-sm-6 mb-3">
+            <div class="card text-white bg-success o-hidden h-100">
+              <div class="card-body">
+                <div class="card-body-icon">
+                  <i class="fas fa-fw fa-shopping-cart"></i>
+                </div>
+                <div class="mr-5">Active Orders</div>
               </div>
               <a class="card-footer text-white clearfix small z-1" href="#">
                 <span class="float-left">View Details</span>
@@ -177,29 +140,14 @@
               </a>
             </div>
           </div>
-          <div class="col-xl-3 col-sm-6 mb-3">
-            <div class="card text-white bg-success o-hidden h-100">
-              <div class="card-body">
-                <div class="card-body-icon">
-                  <i class="fas fa-fw fa-shopping-cart"></i>
-                </div>
-                <div class="mr-5">Completed Orders</div>
-              </div>
-              <a class="card-footer text-white clearfix small z-1" href="#">
-                <span class="float-left">View Details</span>
-                <span class="float-right">
-                  <i class="fas fa-angle-right"></i>
-                </span>
-              </a>
-            </div>
-          </div>
+
           <div class="col-xl-3 col-sm-6 mb-3">
             <div class="card text-white bg-danger o-hidden h-100">
               <div class="card-body">
                 <div class="card-body-icon">
                   <i class="fas fa-fw fa-life-ring"></i>
                 </div>
-                <div class="mr-5">Approved Orders</div>
+                <div class="mr-5">Canceled Orders</div>
               </div>
               <a class="card-footer text-white clearfix small z-1" href="#">
                 <span class="float-left">View Details</span>
@@ -227,7 +175,7 @@
         <div class="card mb-3">
           <div class="card-header">
             <i class="fas fa-table"></i>
-            Data Table Example</div>
+            Master Table</div>
           <div class="card-body">
             <div class="table-responsive">
               <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -712,7 +660,7 @@
               </table>
             </div>
           </div>
-          <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+          <div class="card-footer small text-muted"></div>
         </div>
 
       </div>
@@ -722,7 +670,7 @@
       <footer class="sticky-footer">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright © Your Website 2019</span>
+            <span>Copyright © Jones Print Company 2019</span>
           </div>
         </div>
       </footer>
@@ -751,7 +699,7 @@
         <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
+          <a class="btn btn-primary" th:href="@{/logout}" >Logout</a>
         </div>
       </div>
     </div>
