@@ -29,16 +29,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             };
         
         String[] templates  =  {
-        		"/registration**",
-
+        		"/newUser**",
+        		
             };
     	
         http         
                 .authorizeRequests()
-//                	.antMatchers(staticResources).permitAll()     
-//                	.antMatchers(templates).permitAll()                    
-//                    .anyRequest().authenticated()
-                .anyRequest().permitAll()
+                	.antMatchers(staticResources).permitAll()     
+//                	.antMatchers(templates).permitAll()  
+                	.antMatchers(templates).access("hasRole('ROLE_ADMIN')")
+                    .anyRequest().authenticated()
+                
                 .and()
                     .formLogin()
                         .loginPage("/login")
@@ -49,7 +50,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         .clearAuthentication(true)
                         .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                         .logoutSuccessUrl("/login?logout")
-                .permitAll();
+                        .and().exceptionHandling() //exception handling configuration
+                		.accessDeniedPage("/login?access-denied");
+                		
     }
 
     @Bean

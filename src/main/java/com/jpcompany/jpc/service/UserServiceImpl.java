@@ -36,7 +36,7 @@ public class UserServiceImpl implements UserService {
         user.setLastName(registration.getLastName());
         user.setEmail(registration.getEmail());
         user.setPassword(passwordEncoder.encode(registration.getPassword()));
-        user.setRoles(Arrays.asList(new Role("ROLE_USER")));
+        user.setRoles(Arrays.asList(new Role("ROLE_ADMIN")));
         return userRepository.save(user);
     }
 
@@ -46,6 +46,10 @@ public class UserServiceImpl implements UserService {
         if (user == null){
             throw new UsernameNotFoundException("Invalid username or password.");
         }
+//        if(!user.getRoles().equals("ROLE_ADMIN")) {
+//            throw new UsernameNotFoundException("Access Denied.");
+//        }
+        
         return new org.springframework.security.core.userdetails.User(user.getEmail(),
                 user.getPassword(),
                 mapRolesToAuthorities(user.getRoles()));

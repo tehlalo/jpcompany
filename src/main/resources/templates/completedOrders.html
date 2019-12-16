@@ -8,10 +8,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  
 
-
-  <title>SB Admin - Dashboard</title>
+  <title>SB Admin - Blank Page</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -22,13 +20,13 @@
   <!-- Custom styles for this template-->
   <link href="css/sb-admin.css" rel="stylesheet">
   
-
+  
 
 </head>
 
 <body id="page-top">
 
-  <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+    <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
     <a class="navbar-brand mr-1" th:href="@{/}">
 	<img src="images/logo.png" alt="Jones Print Company" height="51" width="81"/>
@@ -39,8 +37,8 @@
     </button>
 
   </nav>
- 
-  <div id="wrapper">
+
+ <div id="wrapper">
 
     <!-- Sidebar -->
     <ul class="sidebar navbar-nav">
@@ -71,7 +69,7 @@
           <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editUserModal">Profile</a>
           <a class="dropdown-item" href="#" data-toggle="modal" data-target="#userPasswordModal">Password Reset</a>
         </div>
-      </li>          
+      </li>        
         
       <li class="nav-item">
         <a class="nav-link" href="#" data-toggle="modal" data-target="#logoutModal">
@@ -81,81 +79,159 @@
     </ul>
 
     <div id="content-wrapper">
+
       <div class="container-fluid">
 
-		<div class="row">
-		<div class="col-12 col-md-3"></div>
-			<div class="col-6 col-md-5 bg-light" >
+        <!-- Breadcrumbs-->
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a th:href="@{/}">Dashboard</a>
+          </li>
+          <li class="breadcrumb-item active">Overview</li>
+        </ol>
 
-				<div th:if="${param.success}">
-					<div class="alert alert-info">You've successfully registered
-						to our awesome app!</div>
-				</div>
+        <!-- Icon Cards-->
+        <div class="row">
+          <div class="col-xl-3 col-sm-6 mb-3">
+            <div class="card text-white bg-primary o-hidden h-100">
+              <div class="card-body">
+                <div class="card-body-icon">
+                  <i class="fas fa-fw fa-comments"></i>
+                </div>
+                <div class="mr-5">Completed Orders</div>
+              </div>
+              <a class="card-footer text-white clearfix small z-1" th:href="@{/completedOrders}">
+                <span class="float-left">View Details</span>
+                <span class="float-right">
+                  <i class="fas fa-angle-right"></i>
+                </span>
+              </a>
+            </div>
+          </div>
+		  <div class="col-xl-3 col-sm-6 mb-3">
+            <div class="card text-white bg-success o-hidden h-100">
+              <div class="card-body">
+                <div class="card-body-icon">
+                  <i class="fas fa-fw fa-shopping-cart"></i>
+                </div>
+                <div class="mr-5">Active Orders</div>
+              </div>
+              <a class="card-footer text-white clearfix small z-1" th:href="@{/activeOrders}">
+                <span class="float-left">View Details</span>
+                <span class="float-right">
+                  <i class="fas fa-angle-right"></i>
+                </span>
+              </a>
+            </div>
+          </div>
+          <div class="col-xl-3 col-sm-6 mb-3">
+            <div class="card text-white bg-warning o-hidden h-100">
+              <div class="card-body">
+                <div class="card-body-icon">
+                  <i class="fas fa-fw fa-list"></i>
+                </div>
+                <div class="mr-5">Pending Approvals</div>
+              </div>
+              <a class="card-footer text-white clearfix small z-1" th:href="@{/pendingApprovals}">
+                <span class="float-left">View Details</span>
+                <span class="float-right">
+                  <i class="fas fa-angle-right"></i>
+                </span>
+              </a>
+            </div>
+          </div>
 
-				<center><h1>Registration</h1></center>
-				<form th:action="@{/newUser}" th:object="${user}" method="post">
+          <div class="col-xl-3 col-sm-6 mb-3">
+            <div class="card text-white bg-danger o-hidden h-100">
+              <div class="card-body">
+                <div class="card-body-icon">
+                  <i class="fas fa-fw fa-life-ring"></i>
+                </div>
+                <div class="mr-5">Canceled Orders</div>
+              </div>
+              <a class="card-footer text-white clearfix small z-1" th:href="@{/canceledOrders}">
+                <span class="float-left">View Details</span>
+                <span class="float-right">
+                  <i class="fas fa-angle-right"></i>
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
 
-					<p class="error-message" th:if="${#fields.hasGlobalErrors()}"
-						th:each="error : ${#fields.errors('global')}" th:text="${error}">Validation
-						error</p>
 
-					<div class="form-group"	th:classappend="${#fields.hasErrors('firstName')}? 'has-error':''">
-						<label for="firstName" class="control-label">First name</label>
-						<input id="firstName" class="form-control" th:field="*{firstName}" />
-						<p class="error-message" th:each="error: ${#fields.errors('firstName')}" th:text="${error}">Validation error</p>
-					</div>
-					
-					<div class="form-group" th:classappend="${#fields.hasErrors('lastName')}? 'has-error':''">
-						<label for="lastName" class="control-label">Last name</label> 
-						<input id="lastName" class="form-control" th:field="*{lastName}" />
-						<p class="error-message" th:each="error : ${#fields.errors('lastName')}" th:text="${error}">Validation error</p>
-					</div>
-					
-					<div class="form-group" th:classappend="${#fields.hasErrors('email')}? 'has-error':''">
-						<label for="email" class="control-label">E-mail</label> 
-						<input id="email" class="form-control" th:field="*{email}" />
-						<p class="error-message" th:each="error : ${#fields.errors('email')}" th:text="${error}">Validation	error</p>
-					</div>
-					<div class="form-group"	th:classappend="${#fields.hasErrors('confirmEmail')}? 'has-error':''">
-						<label for="confirmEmail" class="control-label">Confirm	e-mail</label> 
-						<input id="confirmEmail" class="form-control" th:field="*{confirmEmail}" />
-						<p class="error-message" th:each="error : ${#fields.errors('confirmEmail')}" th:text="${error}">Validation error</p>
-					</div>
-					
-					<div class="form-group"	th:classappend="${#fields.hasErrors('password')}? 'has-error':''">
-						<label for="password" class="control-label">Password</label> 
-						<input id="password" class="form-control" type="password" th:field="*{password}" />
-						<p class="error-message" th:each="error : ${#fields.errors('password')}" th:text="${error}">Validation error</p>
-					</div>
-					<div class="form-group"	th:classappend="${#fields.hasErrors('confirmPassword')}? 'has-error':''">
-						<label for="confirmPassword" class="control-label">Confirm password</label>
-						<input id="confirmPassword" class="form-control" type="password" th:field="*{confirmPassword}" />
-						<p class="error-message" th:each="error : ${#fields.errors('confirmPassword')}" th:text="${error}">Validation error</p>
-					</div>
-					
-					<div class="form-group"
-						th:classappend="${#fields.hasErrors('terms')}? 'has-error':''">
-						<input id="terms" type="checkbox" th:field="*{terms}" />   <label
-							class="control-label" for="terms"> I agree with the <a
-							href="#">terms and conditions</a> for Registration.
-						</label>
-						<p class="error-message"
-							th:each="error : ${#fields.errors('terms')}" th:text="${error}">Validation
-							error</p>
-					</div>
-					<div class="form-group">
-						<button type="submit" class="btn btn-success">Register</button>
-						<br>
-						<span>Already registered? <a th:href="@{/login}">Login
-								here</a></span>
-					</div>
-				</form>
-			</div>
-		</div>
+        <!-- Area Chart Example
+        <div class="card mb-3">
+          <div class="card-header">
+            <i class="fas fa-chart-area"></i>
+            Area Chart Example</div>
+          <div class="card-body">
+            <canvas id="myAreaChart" width="100%" height="30"></canvas>
+          </div>
+          <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+        </div>
+        -->
 
-    </div> 
-     </div>
-    
+        <!-- DataTables Example -->
+        <div class="card mb-3">
+          <div class="card-header">
+            <i class="fas fa-table"></i>
+            Completed Orders</div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+		            <tr>
+		                <th>Order</th>
+						<th>Order Date</th>
+		                <th>Order Status</th>
+		                <th>Shipping Date</th>
+		                <th>Shipping Status</th>
+		                <th>User</th>
+		                <th>Actions</th>
+		            </tr>
+                </thead>
+                <tfoot>
+		            <tr>
+		                <th>Order</th>
+						<th>Order Date</th>
+		                <th>Order Status</th>
+		                <th>Shipping Date</th>
+		                <th>Shipping Status</th>
+		                <th>User</th>
+		                <th>Actions</th>
+		            </tr>
+                </tfoot>
+                <tbody>
+                  <tr>
+                    <td>12312545</td>
+                    <td>12/15/2019</td>
+                    <td>Completed</td>
+                    <td>12/15/2019</td>
+                    <td>Shipped from Facility</td>
+                    <td>raul.andrade1992@gmail.com</td>
+                    <td>More details</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="card-footer small text-muted"></div>
+        </div>
+
+      </div>
+      <!-- /.container-fluid -->
+
+      <!-- Sticky Footer -->
+      <footer class="sticky-footer">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>Copyright © Jones Print Company 2019</span>
+          </div>
+        </div>
+      </footer>
+
+    </div>
     <!-- /.content-wrapper -->
 
   </div>
@@ -184,8 +260,8 @@
       </div>
     </div>
   </div>
-  
-    <!-- editUserModal Modal-->
+
+      <!-- editUserModal Modal-->
   <div class="modal fade" id="editUserModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -196,45 +272,29 @@
           </button>
         </div>
         <div class="modal-body">
-        	<form th:action="@{/}" th:object="${user}" method="post">
+        	<form th:action="@{/}" method="post">
 
-					<p class="error-message" th:if="${#fields.hasGlobalErrors()}"
-						th:each="error : ${#fields.errors('global')}" th:text="${error}">Validation
-						error</p>
+				
 
-					<div class="form-group"	th:classappend="${#fields.hasErrors('firstName')}? 'has-error':''">
 						<label for="firstName" class="control-label">First name</label>
-						<input id="firstName" class="form-control" th:field="*{firstName}" />
-						<p class="error-message" th:each="error: ${#fields.errors('firstName')}" th:text="${error}">Validation error</p>
-					</div>
+						<input id="firstName" class="form-control" />
 					
-					<div class="form-group" th:classappend="${#fields.hasErrors('lastName')}? 'has-error':''">
 						<label for="lastName" class="control-label">Last name</label> 
-						<input id="lastName" class="form-control" th:field="*{lastName}" />
-						<p class="error-message" th:each="error : ${#fields.errors('lastName')}" th:text="${error}">Validation error</p>
-					</div>
+						<input id="lastName" class="form-control"  />
 					
-					<div class="form-group" th:classappend="${#fields.hasErrors('email')}? 'has-error':''">
+					
 						<label for="email" class="control-label">E-mail</label> 
-						<input id="email" class="form-control" th:field="*{email}" />
-						<p class="error-message" th:each="error : ${#fields.errors('email')}" th:text="${error}">Validation	error</p>
-					</div>
-					<div class="form-group"	th:classappend="${#fields.hasErrors('confirmEmail')}? 'has-error':''">
+						<input id="email" class="form-control"  />
+
 						<label for="confirmEmail" class="control-label">Confirm	e-mail</label> 
-						<input id="confirmEmail" class="form-control" th:field="*{confirmEmail}" />
-						<p class="error-message" th:each="error : ${#fields.errors('confirmEmail')}" th:text="${error}">Validation error</p>
-					</div>
+						<input id="confirmEmail" class="form-control"  />
 					
-					<div class="form-group"	th:classappend="${#fields.hasErrors('password')}? 'has-error':''">
 						<label for="password" class="control-label">Password</label> 
-						<input id="password" class="form-control" type="password" th:field="*{password}" />
-						<p class="error-message" th:each="error : ${#fields.errors('password')}" th:text="${error}">Validation error</p>
-					</div>
-					<div class="form-group"	th:classappend="${#fields.hasErrors('confirmPassword')}? 'has-error':''">
+						<input id="password" class="form-control" type="password" />
+						
 						<label for="confirmPassword" class="control-label">Confirm password</label>
-						<input id="confirmPassword" class="form-control" type="password" th:field="*{confirmPassword}" />
-						<p class="error-message" th:each="error : ${#fields.errors('confirmPassword')}" th:text="${error}">Validation error</p>
-					</div>	
+						<input id="confirmPassword" class="form-control" type="password"  />
+						<br>
 					<div class="form-group">					
 						<button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
 						<a class="btn btn-primary" type=submit >Update</a>	
@@ -293,7 +353,7 @@
       </div>
     </div>
   </div>
-
+  
   <!-- Bootstrap core JavaScript-->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -312,10 +372,6 @@
   <!-- Demo scripts for this page-->
   <script src="js/demo/datatables-demo.js"></script>
   <script src="js/demo/chart-area-demo.js"></script>
-  
-  <!-- Aditional JS -->
-  	<script type="text/javascript"	th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>
-	<script type="text/javascript"	th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
 
 </body>
 

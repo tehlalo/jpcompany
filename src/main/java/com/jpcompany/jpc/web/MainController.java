@@ -26,4 +26,40 @@ public class MainController {
     public String userReg() {
         return "userReg";
     }
+    
+    @GetMapping("/activeOrders")
+    public String activeOrders() {
+        return "activeOrders";
+    }
+    
+    @GetMapping("/canceledOrders")
+    public String canceledOrders() {
+        return "canceledOrders";
+    }
+    
+    @GetMapping("/completedOrders")
+    public String completedOrders() {
+        return "completedOrders";
+    }
+    
+    @GetMapping("/editUser")
+    public String editUser() {
+        return "editUser";
+    }
+    
+    @GetMapping("/forgotPassword")
+    public String forgotPassword() {
+        return "forgotPassword";
+    }
+    
+    @GetMapping("/pendingApprovals")
+    public String pendingApprovals() {
+        return "pendingApprovals";
+    }
+    
+    @GetMapping("/myAccount")
+    public String myAccount() {
+        return "myAccount";
+    }
+    
 }
